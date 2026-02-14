@@ -105,7 +105,7 @@ export default function Home() {
   return (
     <>
       {/* HERO SECTION */}
-      <section className="relative min-h-[60vh] md:min-h-[80vh] flex flex-col items-center justify-center wave-separator overflow-hidden">
+      <section className="relative min-h-[75vh] md:min-h-[80vh] flex flex-col items-center justify-center wave-separator overflow-hidden px-4 py-16 md:py-20">
         <Image
           src="/hero-original.jpg"
           alt="Beautiful outdoor living space with pergola and manicured lawn by Sunrise Landscape"
@@ -116,7 +116,7 @@ export default function Home() {
         />
         <div className="absolute inset-0 bg-black/50" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/40" />
-        <div className="relative flex flex-col items-center text-center px-4 py-10 md:py-20 max-w-4xl mx-auto">
+        <div className="relative flex flex-col items-center justify-center text-center max-w-4xl mx-auto w-full">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -136,7 +136,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.5 }}
-            className="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full sm:w-auto pb-4 md:pb-0"
+            className="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full sm:w-auto"
           >
             <Button
               asChild
