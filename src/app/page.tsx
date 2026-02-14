@@ -105,72 +105,76 @@ export default function Home() {
   return (
     <>
       {/* HERO SECTION */}
-      <section className="relative min-h-[90vh] flex items-center wave-separator overflow-hidden">
+      <section className="relative min-h-[80vh] flex flex-col items-center justify-center wave-separator overflow-hidden">
         <Image
-          src="/images/new+landscaping+design-1920w.jpg"
-          alt="Professional landscaping by Sunrise Landscape in Marysville, WA"
+          src="/hero-original.jpg"
+          alt="Beautiful outdoor living space with pergola and manicured lawn by Sunrise Landscape"
           fill
-          className="object-cover scale-105"
+          className="object-cover object-center"
           priority
           sizes="100vw"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-brand-navy/95 via-brand-navy/75 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-t from-brand-navy/60 via-transparent to-brand-navy/30" />
-        <div className="relative container mx-auto px-4 py-20">
+        <div className="absolute inset-0 bg-black/50" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/40" />
+        <div className="relative flex flex-col items-center text-center px-4 py-20 max-w-4xl mx-auto">
           <motion.div
-            initial={{ opacity: 0, y: 40 }}
+            initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
-            className="max-w-2xl"
+            transition={{ duration: 0.6 }}
+            className="mb-8"
           >
-            <motion.span
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-              className="inline-block bg-brand-orange/90 backdrop-blur-sm text-white text-sm font-bold px-4 py-1.5 rounded-full mb-6 uppercase tracking-wide"
-            >
-              Serving Marysville & Surrounding Areas Since 2012
-            </motion.span>
-            <h1 className="font-[family-name:var(--font-heading)] text-5xl md:text-6xl lg:text-7xl text-white leading-[1.1] mb-6 uppercase">
+            <Image
+              src={COMPANY.logo}
+              alt={COMPANY.name}
+              width={320}
+              height={120}
+              className="mx-auto brightness-0 invert drop-shadow-lg"
+              priority
+            />
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.2 }}
+          >
+            <h1 className="font-[family-name:var(--font-heading)] text-4xl md:text-5xl lg:text-6xl text-white leading-[1.1] mb-6 uppercase drop-shadow-lg">
               Transform Your
               <span className="block text-brand-orange drop-shadow-lg">Outdoor Space</span>
             </h1>
-            <p className="text-lg md:text-xl text-gray-200/90 mb-8 leading-relaxed max-w-xl">
+            <p className="text-lg md:text-xl text-gray-100 mb-10 leading-relaxed max-w-2xl mx-auto drop-shadow-md">
               Professional landscaping, hardscaping, concrete work, and excavation
               services. From retaining walls to pool restoration — we bring your
               vision to life.
             </p>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.5 }}
-              className="flex flex-col sm:flex-row gap-4"
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.5 }}
+            className="flex flex-col sm:flex-row gap-4"
+          >
+            <Button
+              asChild
+              size="lg"
+              className="bg-brand-orange hover:bg-brand-orange-light text-white text-lg px-8 py-6 font-bold shadow-lg"
             >
-              <Button
-                asChild
-                size="lg"
-                className="bg-brand-purple hover:bg-brand-purple-light text-white text-lg px-8 py-6 font-bold shadow-lg shadow-brand-purple/30"
-              >
-                <a href={COMPANY.phoneHref}>
-                  <Phone className="h-5 w-5 mr-2" />
-                  Call Us Today!
-                </a>
-              </Button>
-              <Button
-                asChild
-                size="lg"
-                variant="outline"
-                className="border-white/80 text-white hover:bg-white/10 text-lg px-8 py-6 backdrop-blur-sm"
-              >
-                <Link href="/landscape">
-                  Our Services
-                  <ArrowRight className="h-5 w-5 ml-2" />
-                </Link>
-              </Button>
-            </motion.div>
+              <Link href="/contact-us">
+                Get Free Estimate
+                <ArrowRight className="h-5 w-5 ml-2" />
+              </Link>
+            </Button>
+            <Button
+              asChild
+              size="lg"
+              className="bg-brand-purple hover:bg-brand-purple-light text-white text-lg px-8 py-6 font-bold shadow-lg"
+            >
+              <a href={COMPANY.phoneHref}>
+                <Phone className="h-5 w-5 mr-2" />
+                Call Now: {COMPANY.phone}
+              </a>
+            </Button>
           </motion.div>
         </div>
-        {/* Decorative bottom gradient for smooth wave transition */}
         <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white/10 to-transparent pointer-events-none" />
       </section>
 
