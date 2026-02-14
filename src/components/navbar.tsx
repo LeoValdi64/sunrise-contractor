@@ -34,13 +34,8 @@ export function Navbar() {
   }, []);
 
   return (
-    <div
-      className={cn(
-        "fixed top-0 left-0 w-full z-50 transition-transform duration-300",
-        hidden && "-translate-y-full"
-      )}
-    >
-      {/* Orange top bar */}
+    <>
+      {/* Orange top bar - static, scrolls away naturally */}
       <div className="bg-brand-orange text-white text-sm py-2.5">
         <div className="container mx-auto px-4 flex justify-between items-center">
           <span className="hidden md:block font-medium">
@@ -58,8 +53,13 @@ export function Navbar() {
         </div>
       </div>
 
-      {/* White navigation bar with centered logo */}
-      <header className="bg-white shadow-md">
+      {/* Main navigation bar - fixed, hides on scroll down / shows on scroll up */}
+      <header
+        className={cn(
+          "fixed top-0 left-0 w-full z-50 bg-white shadow-md transition-transform duration-300",
+          hidden && "-translate-y-full"
+        )}
+      >
         <div className="container mx-auto px-4">
           <nav className="flex items-center justify-between h-20 lg:h-24">
             {/* Left nav links (desktop) */}
@@ -223,6 +223,6 @@ export function Navbar() {
           </nav>
         </div>
       </header>
-    </div>
+    </>
   );
 }

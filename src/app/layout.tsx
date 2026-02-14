@@ -84,7 +84,7 @@ export default function RootLayout({
         className={`${anton.variable} ${openSans.variable} font-[family-name:var(--font-body)] antialiased overflow-x-hidden`}
       >
         <Navbar />
-        <main className="pt-[120px] lg:pt-[136px]">{children}</main>
+        <main className="pt-20 lg:pt-24">{children}</main>
         <Footer />
         <FloatingButtons />
       </body>
