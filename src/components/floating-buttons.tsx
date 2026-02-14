@@ -10,14 +10,14 @@ export function FloatingButtons() {
       {/* Desktop floating side buttons */}
       <div className="fixed right-0 top-1/2 -translate-y-1/2 z-40 hidden md:flex flex-col gap-1">
         <Link
-          href="/contact-us"
+          href="/contact"
           className="bg-brand-purple hover:bg-brand-purple-light text-white p-3 rounded-l-lg transition-colors"
           aria-label="Contact us"
         >
           <Phone className="h-5 w-5" />
         </Link>
         <Link
-          href="/landscape"
+          href="/services"
           className="bg-brand-purple hover:bg-brand-purple-light text-white p-3 rounded-l-lg transition-colors"
           aria-label="Services"
         >
@@ -31,7 +31,7 @@ export function FloatingButtons() {
           <Mail className="h-5 w-5" />
         </a>
         <Link
-          href="/photo-gallery"
+          href="/gallery"
           className="bg-brand-purple hover:bg-brand-purple-light text-white p-3 rounded-l-lg transition-colors"
           aria-label="Gallery"
         >

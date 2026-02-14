@@ -195,7 +195,7 @@ export default function GalleryPage() {
                 </a>
               </Button>
               <Button asChild size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
-                <Link href="/contact-us">
+                <Link href="/contact">
                   Request a Quote
                   <ArrowRight className="h-4 w-4 ml-2" />
                 </Link>

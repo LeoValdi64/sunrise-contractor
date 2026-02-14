@@ -390,29 +390,29 @@ export const BEFORE_AFTER_PAIRS = [
 // Nav links split into left and right for centered logo layout
 export const NAV_LINKS_LEFT = [
   { href: "/", label: "Home" },
-  { href: "/landscape", label: "Landscape", hasDropdown: true },
-  { href: "/pool-restoration", label: "Pool Restoration" },
+  { href: "/services", label: "Services", hasDropdown: true },
+  { href: "/about", label: "About" },
 ];
 
 export const NAV_LINKS_RIGHT = [
-  { href: "/photo-gallery", label: "Photo Gallery" },
-  { href: "/contact-us", label: "Contact Us" },
+  { href: "/gallery", label: "Gallery" },
+  { href: "/contact", label: "Contact Us" },
 ];
 
 export const NAV_LINKS = [
   { href: "/", label: "Home" },
-  { href: "/landscape", label: "Landscape" },
-  { href: "/pool-restoration", label: "Pool Restoration" },
-  { href: "/photo-gallery", label: "Photo Gallery" },
-  { href: "/contact-us", label: "Contact Us" },
+  { href: "/services", label: "Services" },
+  { href: "/about", label: "About" },
+  { href: "/gallery", label: "Gallery" },
+  { href: "/contact", label: "Contact Us" },
 ];
 
-// Landscape dropdown sub-items
+// Services dropdown sub-items
 export const LANDSCAPE_DROPDOWN = [
-  { href: "/landscape", label: "Landscaping" },
-  { href: "/hardscape", label: "Hardscaping" },
-  { href: "/drainage", label: "Drainage Systems" },
-  { href: "/material-delivery", label: "Material Delivery" },
+  { href: "/services/landscaping", label: "Landscaping" },
+  { href: "/services/hardscaping", label: "Hardscaping" },
+  { href: "/services/drainage", label: "Drainage Systems" },
+  { href: "/services/pool-restoration", label: "Pool Restoration" },
 ];
 
 export const SERVICE_AREA_ZIPS: Record<string, string> = {

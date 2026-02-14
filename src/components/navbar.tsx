@@ -54,7 +54,7 @@ export function Navbar() {
                       href={link.href}
                       className={cn(
                         "px-4 py-2 rounded-md text-sm font-semibold uppercase tracking-wide transition-colors inline-flex items-center gap-1",
-                        pathname === link.href || pathname.startsWith("/landscape") || pathname.startsWith("/hardscape") || pathname.startsWith("/drainage") || pathname.startsWith("/material-delivery")
+                        pathname === link.href || pathname.startsWith("/services/")
                           ? "text-brand-orange"
                           : "text-brand-dark hover:text-brand-orange"
                       )}
@@ -190,7 +190,7 @@ export function Navbar() {
                       </a>
                     </Button>
                     <Button asChild variant="outline" className="w-full border-brand-orange text-brand-orange hover:bg-brand-orange hover:text-white">
-                      <Link href="/contact-us" onClick={() => setMobileOpen(false)}>
+                      <Link href="/contact" onClick={() => setMobileOpen(false)}>
                         Request a Quote
                       </Link>
                     </Button>

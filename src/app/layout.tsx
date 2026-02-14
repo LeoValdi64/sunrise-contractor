@@ -18,7 +18,7 @@ const openSans = Open_Sans({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://sunriselandscapegc.com"),
+  metadataBase: new URL("https://sunrise.cornerintel.com"),
   title: {
     default: "Sunrise Landscape General Contractor Inc | Marysville, WA",
     template: "%s | Sunrise Landscape General Contractor",
@@ -38,12 +38,8 @@ export const metadata: Metadata = {
     "landscape design",
   ],
   icons: {
-    icon: [
-      { url: "/favicon.ico", sizes: "any" },
-      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
-      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
-    ],
-    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180" }],
+    icon: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
   },
   openGraph: {
     type: "website",

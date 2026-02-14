@@ -128,7 +128,7 @@ export default function ServicesPage() {
                 </a>
               </Button>
               <Button asChild size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-brand-orange font-bold">
-                <Link href="/contact-us">Request a Quote</Link>
+                <Link href="/contact">Request a Quote</Link>
               </Button>
             </div>
           </AnimatedSection>

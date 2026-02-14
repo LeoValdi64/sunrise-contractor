@@ -55,7 +55,7 @@ export function Footer() {
                 </li>
               ))}
               <li>
-                <Link href="/pool-restoration" className="text-sm hover:text-brand-orange transition-colors">
+                <Link href="/services/pool-restoration" className="text-sm hover:text-brand-orange transition-colors">
                   Pool Restoration
                 </Link>
               </li>
@@ -99,17 +99,17 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/photo-gallery" className="text-sm hover:text-brand-orange transition-colors">
+                <Link href="/gallery" className="text-sm hover:text-brand-orange transition-colors">
                   Photo Gallery
                 </Link>
               </li>
               <li>
-                <Link href="/contact-us" className="text-sm hover:text-brand-orange transition-colors">
+                <Link href="/contact" className="text-sm hover:text-brand-orange transition-colors">
                   Contact Us
                 </Link>
               </li>
               <li>
-                <Link href="/contact-us" className="text-sm hover:text-brand-orange transition-colors">
+                <Link href="/contact" className="text-sm hover:text-brand-orange transition-colors">
                   Free Estimate
                 </Link>
               </li>

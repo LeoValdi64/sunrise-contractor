@@ -281,7 +281,7 @@ export default function AboutPage() {
                 </a>
               </Button>
               <Button asChild size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-brand-orange font-bold">
-                <Link href="/contact-us">
+                <Link href="/contact">
                   Contact Us
                   <ArrowRight className="h-5 w-5 ml-2" />
                 </Link>

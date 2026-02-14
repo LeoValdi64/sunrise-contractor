@@ -143,7 +143,7 @@ export default function Home() {
               size="lg"
               className="bg-brand-orange hover:bg-brand-orange-light text-white text-lg px-8 py-6 font-bold shadow-lg"
             >
-              <Link href="/contact-us">
+              <Link href="/contact">
                 Get Free Estimate
                 <ArrowRight className="h-5 w-5 ml-2" />
               </Link>
@@ -269,7 +269,7 @@ export default function Home() {
           </div>
           <div className="text-center mt-10">
             <Button asChild variant="outline" size="lg" className="border-brand-teal text-brand-teal hover:bg-brand-teal hover:text-brand-navy font-bold">
-              <Link href="/photo-gallery">
+              <Link href="/gallery">
                 View Full Gallery
                 <ArrowRight className="h-4 w-4 ml-2" />
               </Link>
@@ -355,7 +355,7 @@ export default function Home() {
               </div>
               <div className="mt-8">
                 <Button asChild className="bg-brand-purple hover:bg-brand-purple-light text-white font-bold">
-                  <Link href="/contact-us">
+                  <Link href="/contact">
                     Get a Free Estimate
                     <ArrowRight className="h-4 w-4 ml-2" />
                   </Link>
@@ -536,7 +536,7 @@ export default function Home() {
                 variant="outline"
                 className="border-white text-white hover:bg-white hover:text-brand-orange text-lg px-8 py-6 font-bold"
               >
-                <Link href="/contact-us">
+                <Link href="/contact">
                   Request a Quote Online
                   <ArrowRight className="h-5 w-5 ml-2" />
                 </Link>
