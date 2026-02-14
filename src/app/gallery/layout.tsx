@@ -3,6 +3,11 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Project Gallery",
   description: "Browse our portfolio of completed landscaping, hardscaping, retaining wall, pool restoration, and excavation projects across Snohomish County, WA.",
+  openGraph: {
+    title: "Project Gallery | Sunrise Landscape General Contractor",
+    description: "Browse our portfolio of completed landscaping, hardscaping, retaining wall, pool restoration, and excavation projects across Snohomish County, WA.",
+    images: [{ url: "/images/stone+pathways-1920w.jpg" }],
+  },
 };
 
 export default function GalleryLayout({ children }: { children: React.ReactNode }) {

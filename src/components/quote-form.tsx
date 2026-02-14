@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { SERVICES, COMPANY } from "@/lib/constants";
-import { Send, CheckCircle } from "lucide-react";
+import { Send, CheckCircle, AlertCircle } from "lucide-react";
 
 interface QuoteFormProps {
   className?: string;
@@ -14,6 +14,7 @@ interface QuoteFormProps {
 
 export function QuoteForm({ className, preselectedService }: QuoteFormProps) {
   const [submitted, setSubmitted] = useState(false);
+  const [touched, setTouched] = useState<Record<string, boolean>>({});
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -22,8 +23,25 @@ export function QuoteForm({ className, preselectedService }: QuoteFormProps) {
     description: "",
   });
 
+  const errors: Record<string, string> = {};
+  if (touched.name && !formData.name.trim()) errors.name = "Name is required";
+  if (touched.phone && !formData.phone.trim()) errors.phone = "Phone number is required";
+  if (touched.phone && formData.phone.trim() && !/^[\d\s()+-]{7,}$/.test(formData.phone.trim())) errors.phone = "Enter a valid phone number";
+  if (touched.email && formData.email.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email.trim())) errors.email = "Enter a valid email address";
+  if (touched.service && !formData.service) errors.service = "Please select a service";
+
+  const handleBlur = (field: string) => {
+    setTouched((prev) => ({ ...prev, [field]: true }));
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    // Touch all required fields
+    setTouched({ name: true, phone: true, service: true, email: true });
+
+    if (!formData.name.trim() || !formData.phone.trim() || !formData.service) return;
+    if (formData.email.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email.trim())) return;
+
     setSubmitted(true);
   };
 
@@ -46,7 +64,7 @@ export function QuoteForm({ className, preselectedService }: QuoteFormProps) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className={`space-y-4 ${className}`}>
+    <form onSubmit={handleSubmit} className={`space-y-4 ${className}`} noValidate>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
           <label htmlFor="name" className="block text-sm font-medium mb-1.5">
@@ -54,12 +72,18 @@ export function QuoteForm({ className, preselectedService }: QuoteFormProps) {
           </label>
           <Input
             id="name"
-            required
             placeholder="John Smith"
             value={formData.name}
             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-            className="bg-white"
+            onBlur={() => handleBlur("name")}
+            className={`bg-white ${errors.name ? "border-red-400 focus-visible:ring-red-400" : ""}`}
           />
+          {errors.name && (
+            <p className="text-xs text-red-500 mt-1 flex items-center gap-1">
+              <AlertCircle className="h-3 w-3" />
+              {errors.name}
+            </p>
+          )}
         </div>
         <div>
           <label htmlFor="phone" className="block text-sm font-medium mb-1.5">
@@ -68,12 +92,18 @@ export function QuoteForm({ className, preselectedService }: QuoteFormProps) {
           <Input
             id="phone"
             type="tel"
-            required
             placeholder="(425) 555-0123"
             value={formData.phone}
             onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-            className="bg-white"
+            onBlur={() => handleBlur("phone")}
+            className={`bg-white ${errors.phone ? "border-red-400 focus-visible:ring-red-400" : ""}`}
           />
+          {errors.phone && (
+            <p className="text-xs text-red-500 mt-1 flex items-center gap-1">
+              <AlertCircle className="h-3 w-3" />
+              {errors.phone}
+            </p>
+          )}
         </div>
       </div>
 
@@ -87,8 +117,15 @@ export function QuoteForm({ className, preselectedService }: QuoteFormProps) {
           placeholder="john@example.com"
           value={formData.email}
           onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-          className="bg-white"
+          onBlur={() => handleBlur("email")}
+          className={`bg-white ${errors.email ? "border-red-400 focus-visible:ring-red-400" : ""}`}
         />
+        {errors.email && (
+          <p className="text-xs text-red-500 mt-1 flex items-center gap-1">
+            <AlertCircle className="h-3 w-3" />
+            {errors.email}
+          </p>
+        )}
       </div>
 
       <div>
@@ -97,10 +134,12 @@ export function QuoteForm({ className, preselectedService }: QuoteFormProps) {
         </label>
         <select
           id="service"
-          required
           value={formData.service}
           onChange={(e) => setFormData({ ...formData, service: e.target.value })}
-          className="flex h-10 w-full rounded-md border border-input bg-white px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+          onBlur={() => handleBlur("service")}
+          className={`flex h-10 w-full rounded-md border bg-white px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ${
+            errors.service ? "border-red-400 focus-visible:ring-red-400" : "border-input"
+          }`}
         >
           <option value="">Select a service...</option>
           {SERVICES.map((service) => (
@@ -110,6 +149,12 @@ export function QuoteForm({ className, preselectedService }: QuoteFormProps) {
           ))}
           <option value="other">Other</option>
         </select>
+        {errors.service && (
+          <p className="text-xs text-red-500 mt-1 flex items-center gap-1">
+            <AlertCircle className="h-3 w-3" />
+            {errors.service}
+          </p>
+        )}
       </div>
 
       <div>

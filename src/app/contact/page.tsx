@@ -1,18 +1,29 @@
 "use client";
 
 import Image from "next/image";
-import { motion } from "framer-motion";
-import { Phone, Mail, MapPin, Clock } from "lucide-react";
+import { motion, useInView } from "framer-motion";
+import { Phone, Mail, MapPin, Clock, Star } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { QuoteForm } from "@/components/quote-form";
-import { COMPANY } from "@/lib/constants";
+import { SectionHeading } from "@/components/section-heading";
+import { COMPANY, TESTIMONIALS } from "@/lib/constants";
+import { useRef } from "react";
 
-const fadeInUp = {
-  initial: { opacity: 0, y: 30 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, margin: "-50px" },
-  transition: { duration: 0.5 },
-};
+function AnimatedSection({ children, className, delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-60px" });
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 30 }}
+      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+      transition={{ duration: 0.5, delay }}
+      className={className}
+    >
+      {children}
+    </motion.div>
+  );
+}
 
 export default function ContactPage() {
   return (
@@ -27,14 +38,16 @@ export default function ContactPage() {
           priority
           sizes="100vw"
         />
-        <div className="absolute inset-0 bg-black/70" />
+        <div className="absolute inset-0 bg-gradient-to-r from-brand-navy/90 via-brand-navy/70 to-brand-navy/50" />
         <div className="relative container mx-auto px-4 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">Contact Us</h1>
+            <h1 className="font-[family-name:var(--font-heading)] text-4xl md:text-5xl lg:text-6xl text-white mb-4 uppercase">
+              Contact Us
+            </h1>
             <p className="text-lg text-gray-300 max-w-2xl mx-auto">
               Ready to start your project? Get in touch for a free, no-obligation estimate.
             </p>
@@ -43,11 +56,11 @@ export default function ContactPage() {
       </section>
 
       {/* Contact Content */}
-      <section className="py-20 bg-brand-cream">
+      <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
             {/* Form */}
-            <motion.div {...fadeInUp} className="lg:col-span-2">
+            <AnimatedSection className="lg:col-span-2">
               <Card className="bg-white shadow-lg">
                 <CardContent className="p-8">
                   <h2 className="text-2xl font-bold text-brand-dark mb-2">Request a Free Estimate</h2>
@@ -57,10 +70,10 @@ export default function ContactPage() {
                   <QuoteForm />
                 </CardContent>
               </Card>
-            </motion.div>
+            </AnimatedSection>
 
             {/* Contact info sidebar */}
-            <motion.div {...fadeInUp} className="space-y-6">
+            <AnimatedSection delay={0.1} className="space-y-6">
               <Card className="bg-white shadow-lg">
                 <CardContent className="p-6 space-y-6">
                   <h3 className="text-xl font-bold text-brand-dark">Get In Touch</h3>
@@ -68,33 +81,33 @@ export default function ContactPage() {
                   <div className="space-y-4">
                     <a
                       href={COMPANY.phoneHref}
-                      className="flex items-start gap-4 p-4 bg-brand-cream rounded-lg hover:bg-brand-cream-dark transition-colors group"
+                      className="flex items-start gap-4 p-4 bg-gray-50 rounded-lg hover:bg-brand-orange/5 transition-colors group"
                     >
-                      <div className="p-2 bg-brand-green rounded-lg shrink-0">
+                      <div className="p-2 bg-brand-orange rounded-lg shrink-0">
                         <Phone className="h-5 w-5 text-white" />
                       </div>
                       <div>
-                        <p className="font-semibold text-brand-dark group-hover:text-brand-green transition-colors">Phone</p>
+                        <p className="font-semibold text-brand-dark group-hover:text-brand-orange transition-colors">Phone</p>
                         <p className="text-sm text-muted-foreground">{COMPANY.phone}</p>
-                        <p className="text-xs text-brand-green mt-1">Click to call</p>
+                        <p className="text-xs text-brand-purple mt-1 font-medium">Tap to call</p>
                       </div>
                     </a>
 
                     <a
                       href={`mailto:${COMPANY.email}`}
-                      className="flex items-start gap-4 p-4 bg-brand-cream rounded-lg hover:bg-brand-cream-dark transition-colors group"
+                      className="flex items-start gap-4 p-4 bg-gray-50 rounded-lg hover:bg-brand-orange/5 transition-colors group"
                     >
-                      <div className="p-2 bg-brand-green rounded-lg shrink-0">
+                      <div className="p-2 bg-brand-orange rounded-lg shrink-0">
                         <Mail className="h-5 w-5 text-white" />
                       </div>
                       <div>
-                        <p className="font-semibold text-brand-dark group-hover:text-brand-green transition-colors">Email</p>
+                        <p className="font-semibold text-brand-dark group-hover:text-brand-orange transition-colors">Email</p>
                         <p className="text-sm text-muted-foreground break-all">{COMPANY.email}</p>
                       </div>
                     </a>
 
-                    <div className="flex items-start gap-4 p-4 bg-brand-cream rounded-lg">
-                      <div className="p-2 bg-brand-green rounded-lg shrink-0">
+                    <div className="flex items-start gap-4 p-4 bg-gray-50 rounded-lg">
+                      <div className="p-2 bg-brand-orange rounded-lg shrink-0">
                         <MapPin className="h-5 w-5 text-white" />
                       </div>
                       <div>
@@ -104,21 +117,24 @@ export default function ContactPage() {
                       </div>
                     </div>
 
-                    <div className="flex items-start gap-4 p-4 bg-brand-cream rounded-lg">
-                      <div className="p-2 bg-brand-green rounded-lg shrink-0">
+                    <div className="flex items-start gap-4 p-4 bg-gray-50 rounded-lg">
+                      <div className="p-2 bg-brand-orange rounded-lg shrink-0">
                         <Clock className="h-5 w-5 text-white" />
                       </div>
                       <div>
                         <p className="font-semibold text-brand-dark">Business Hours</p>
-                        <p className="text-sm text-muted-foreground">{COMPANY.hours}</p>
-                        <p className="text-sm text-muted-foreground">{COMPANY.hoursClosed}</p>
+                        <div className="text-sm text-muted-foreground mt-1 space-y-0.5">
+                          <p>Monday - Friday: 7:00 AM - 6:00 PM</p>
+                          <p>Saturday: 7:00 AM - 6:00 PM</p>
+                          <p className="text-brand-dark font-medium">Sunday: Closed</p>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </CardContent>
               </Card>
 
-              {/* Map placeholder */}
+              {/* Map */}
               <Card className="bg-white shadow-lg overflow-hidden">
                 <div className="relative h-64">
                   <iframe
@@ -139,7 +155,38 @@ export default function ContactPage() {
                   </p>
                 </CardContent>
               </Card>
-            </motion.div>
+            </AnimatedSection>
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonial highlight */}
+      <section className="py-16 bg-brand-navy">
+        <div className="container mx-auto px-4">
+          <SectionHeading
+            label="Don't Just Take Our Word"
+            title="What Clients Say"
+            light
+          />
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            {TESTIMONIALS.slice(0, 3).map((t, i) => (
+              <AnimatedSection key={t.name} delay={i * 0.1}>
+                <div className="bg-brand-navy-light border border-white/10 rounded-2xl p-6 h-full flex flex-col">
+                  <div className="flex gap-1 mb-3">
+                    {Array.from({ length: t.rating }).map((_, j) => (
+                      <Star key={j} className="h-4 w-4 fill-brand-orange text-brand-orange" />
+                    ))}
+                  </div>
+                  <p className="text-gray-200 leading-relaxed mb-4 flex-1 text-sm">
+                    &ldquo;{t.text}&rdquo;
+                  </p>
+                  <div className="pt-3 border-t border-white/10">
+                    <p className="font-semibold text-white text-sm">{t.name}</p>
+                    <p className="text-xs text-gray-400">{t.location}</p>
+                  </div>
+                </div>
+              </AnimatedSection>
+            ))}
           </div>
         </div>
       </section>

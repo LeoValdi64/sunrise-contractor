@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import {
   Phone,
   Shield,
@@ -14,6 +14,10 @@ import {
   CheckCircle,
   ChevronLeft,
   ChevronRight,
+  ClipboardList,
+  Pencil,
+  Hammer,
+  Sparkles,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -27,7 +31,7 @@ import {
   TESTIMONIALS,
   BEFORE_AFTER_PAIRS,
 } from "@/lib/constants";
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 30 },
@@ -44,6 +48,50 @@ const staggerContainer = {
   viewport: { once: true },
 };
 
+const PROCESS_STEPS = [
+  {
+    icon: ClipboardList,
+    title: "Consultation",
+    description: "We visit your property, listen to your vision, and assess the site conditions.",
+    step: "01",
+  },
+  {
+    icon: Pencil,
+    title: "Design",
+    description: "Our team creates a detailed plan with materials, timeline, and transparent pricing.",
+    step: "02",
+  },
+  {
+    icon: Hammer,
+    title: "Build",
+    description: "Our experienced crews execute the project with precision and regular updates.",
+    step: "03",
+  },
+  {
+    icon: Sparkles,
+    title: "Enjoy",
+    description: "We do a final walkthrough to ensure everything meets your expectations.",
+    step: "04",
+  },
+];
+
+function AnimatedSection({ children, className, delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-80px" });
+
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 40 }}
+      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+      transition={{ duration: 0.6, delay }}
+      className={className}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
 export default function Home() {
   const [testimonialIndex, setTestimonialIndex] = useState(0);
 
@@ -56,17 +104,18 @@ export default function Home() {
 
   return (
     <>
-      {/* HERO SECTION with wave separator */}
-      <section className="relative min-h-[85vh] flex items-center wave-separator">
+      {/* HERO SECTION */}
+      <section className="relative min-h-[90vh] flex items-center wave-separator overflow-hidden">
         <Image
           src="/images/new+landscaping+design-1920w.jpg"
           alt="Professional landscaping by Sunrise Landscape in Marysville, WA"
           fill
-          className="object-cover"
+          className="object-cover scale-105"
           priority
           sizes="100vw"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-brand-navy/90 via-brand-navy/70 to-brand-navy/40" />
+        <div className="absolute inset-0 bg-gradient-to-r from-brand-navy/95 via-brand-navy/75 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-brand-navy/60 via-transparent to-brand-navy/30" />
         <div className="relative container mx-auto px-4 py-20">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
@@ -74,23 +123,33 @@ export default function Home() {
             transition={{ duration: 0.7 }}
             className="max-w-2xl"
           >
-            <span className="inline-block bg-brand-orange text-white text-sm font-bold px-4 py-1.5 rounded-full mb-6 uppercase tracking-wide">
+            <motion.span
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="inline-block bg-brand-orange/90 backdrop-blur-sm text-white text-sm font-bold px-4 py-1.5 rounded-full mb-6 uppercase tracking-wide"
+            >
               Serving Marysville & Surrounding Areas Since 2012
-            </span>
-            <h1 className="font-[family-name:var(--font-heading)] text-4xl md:text-5xl lg:text-6xl text-white leading-tight mb-6 uppercase">
+            </motion.span>
+            <h1 className="font-[family-name:var(--font-heading)] text-5xl md:text-6xl lg:text-7xl text-white leading-[1.1] mb-6 uppercase">
               Transform Your
-              <span className="text-brand-orange"> Outdoor Space</span>
+              <span className="block text-brand-orange drop-shadow-lg">Outdoor Space</span>
             </h1>
-            <p className="text-lg md:text-xl text-gray-200 mb-8 leading-relaxed">
+            <p className="text-lg md:text-xl text-gray-200/90 mb-8 leading-relaxed max-w-xl">
               Professional landscaping, hardscaping, concrete work, and excavation
               services. From retaining walls to pool restoration — we bring your
               vision to life.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.5 }}
+              className="flex flex-col sm:flex-row gap-4"
+            >
               <Button
                 asChild
                 size="lg"
-                className="bg-brand-purple hover:bg-brand-purple-light text-white text-lg px-8 py-6 font-bold"
+                className="bg-brand-purple hover:bg-brand-purple-light text-white text-lg px-8 py-6 font-bold shadow-lg shadow-brand-purple/30"
               >
                 <a href={COMPANY.phoneHref}>
                   <Phone className="h-5 w-5 mr-2" />
@@ -101,38 +160,40 @@ export default function Home() {
                 asChild
                 size="lg"
                 variant="outline"
-                className="border-white text-white hover:bg-white/10 text-lg px-8 py-6"
+                className="border-white/80 text-white hover:bg-white/10 text-lg px-8 py-6 backdrop-blur-sm"
               >
                 <Link href="/landscape">
                   Our Services
                   <ArrowRight className="h-5 w-5 ml-2" />
                 </Link>
               </Button>
-            </div>
+            </motion.div>
           </motion.div>
         </div>
+        {/* Decorative bottom gradient for smooth wave transition */}
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white/10 to-transparent pointer-events-none" />
       </section>
 
       {/* TRUST BAR */}
-      <section className="bg-white py-8">
+      <section className="bg-white py-8 border-b border-gray-100">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-0 md:divide-x divide-gray-200">
             {[
               { icon: Shield, label: "Licensed & Insured", sub: "Full coverage for your peace of mind" },
               { icon: Clock, label: "Free Estimates", sub: "No obligation consultations" },
               { icon: Award, label: "12+ Years Experience", sub: "Trusted by hundreds of homeowners" },
-            ].map((item) => (
-              <motion.div
-                key={item.label}
-                {...fadeInUp}
-                className="flex items-center justify-center gap-4 px-6"
-              >
-                <item.icon className="h-10 w-10 text-brand-orange shrink-0" />
-                <div>
-                  <p className="font-bold text-lg text-brand-dark">{item.label}</p>
-                  <p className="text-sm text-muted-foreground">{item.sub}</p>
+            ].map((item, i) => (
+              <AnimatedSection key={item.label} delay={i * 0.1}>
+                <div className="flex items-center justify-center gap-4 px-6">
+                  <div className="p-2.5 bg-orange-50 rounded-xl">
+                    <item.icon className="h-8 w-8 text-brand-orange" />
+                  </div>
+                  <div>
+                    <p className="font-bold text-lg text-brand-dark">{item.label}</p>
+                    <p className="text-sm text-muted-foreground">{item.sub}</p>
+                  </div>
                 </div>
-              </motion.div>
+              </AnimatedSection>
             ))}
           </div>
         </div>
@@ -162,6 +223,7 @@ export default function Home() {
                         className="object-cover group-hover:scale-105 transition-transform duration-500"
                         sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                       />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                       {service.highlight && (
                         <span className="absolute top-3 right-3 bg-brand-purple text-white text-xs font-bold px-3 py-1 rounded-full">
                           Unique Service
@@ -170,7 +232,7 @@ export default function Home() {
                     </div>
                     <CardContent className="p-6">
                       <div className="flex items-center gap-3 mb-3">
-                        <div className="p-2 bg-orange-50 rounded-lg">
+                        <div className="p-2 bg-orange-50 rounded-lg group-hover:bg-brand-orange/10 transition-colors">
                           <service.icon className="h-5 w-5 text-brand-orange" />
                         </div>
                         <h3 className="font-bold text-lg text-brand-dark">{service.title}</h3>
@@ -202,7 +264,7 @@ export default function Home() {
           />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
             {BEFORE_AFTER_PAIRS.map((pair) => (
-              <motion.div key={pair.title} {...fadeInUp}>
+              <AnimatedSection key={pair.title}>
                 <BeforeAfterSlider
                   before={pair.before}
                   after={pair.after}
@@ -213,7 +275,7 @@ export default function Home() {
                   <h3 className="font-bold text-lg text-white">{pair.title}</h3>
                   <p className="text-sm text-gray-400">{pair.description}</p>
                 </div>
-              </motion.div>
+              </AnimatedSection>
             ))}
           </div>
           <div className="text-center mt-10">
@@ -227,19 +289,50 @@ export default function Home() {
         </div>
       </section>
 
+      {/* PROCESS / TIMELINE */}
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-4">
+          <SectionHeading
+            label="How It Works"
+            title="Our Process"
+            description="From initial consultation to project completion, here's what to expect when you work with us."
+          />
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-5xl mx-auto">
+            {PROCESS_STEPS.map((step, i) => (
+              <AnimatedSection key={step.title} delay={i * 0.15}>
+                <div className="relative text-center group">
+                  {/* Connector line */}
+                  {i < PROCESS_STEPS.length - 1 && (
+                    <div className="hidden lg:block absolute top-10 left-[60%] w-[80%] h-0.5 bg-gradient-to-r from-brand-orange/40 to-brand-orange/10" />
+                  )}
+                  <div className="relative inline-flex items-center justify-center w-20 h-20 bg-brand-orange/10 rounded-2xl mb-4 group-hover:bg-brand-orange/20 transition-colors">
+                    <step.icon className="h-8 w-8 text-brand-orange" />
+                    <span className="absolute -top-2 -right-2 w-7 h-7 bg-brand-navy text-white text-xs font-bold rounded-full flex items-center justify-center">
+                      {step.step}
+                    </span>
+                  </div>
+                  <h3 className="font-bold text-lg text-brand-dark mb-2">{step.title}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{step.description}</p>
+                </div>
+              </AnimatedSection>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* STATS */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-brand-navy">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
             {[
               { value: `${COMPANY.projectsCompleted}+`, label: "Projects Completed" },
               { value: `${COMPANY.yearsExperience}+`, label: "Years Experience" },
               { value: `${COMPANY.citiesServed}`, label: "Cities Served" },
-            ].map((stat) => (
-              <motion.div key={stat.label} {...fadeInUp}>
+            ].map((stat, i) => (
+              <AnimatedSection key={stat.label} delay={i * 0.1}>
                 <p className="font-[family-name:var(--font-heading)] text-5xl md:text-6xl text-brand-orange uppercase">{stat.value}</p>
-                <p className="text-lg mt-2 text-muted-foreground">{stat.label}</p>
-              </motion.div>
+                <p className="text-lg mt-2 text-gray-300">{stat.label}</p>
+              </AnimatedSection>
             ))}
           </div>
         </div>
@@ -249,7 +342,7 @@ export default function Home() {
       <section className="py-20 bg-gray-50 wave-separator wave-separator-navy">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <motion.div {...fadeInUp}>
+            <AnimatedSection>
               <SectionHeading
                 label="Why Sunrise?"
                 title="Why Choose Us"
@@ -279,8 +372,8 @@ export default function Home() {
                   </Link>
                 </Button>
               </div>
-            </motion.div>
-            <motion.div {...fadeInUp} className="relative">
+            </AnimatedSection>
+            <AnimatedSection delay={0.2} className="relative">
               <Image
                 src="/images/Sunrise+Landscape+Contractor+trucks-1920w.jpg"
                 alt="Sunrise Landscape contractor fleet"
@@ -293,12 +386,12 @@ export default function Home() {
                 <p className="font-[family-name:var(--font-heading)] text-3xl">{COMPANY.yearsExperience}+</p>
                 <p className="text-sm">Years in Business</p>
               </div>
-            </motion.div>
+            </AnimatedSection>
           </div>
         </div>
       </section>
 
-      {/* TESTIMONIALS */}
+      {/* TESTIMONIALS - Grid layout with star ratings */}
       <section className="py-20 bg-brand-navy">
         <div className="container mx-auto px-4">
           <SectionHeading
@@ -308,13 +401,36 @@ export default function Home() {
             light
           />
 
-          <div className="max-w-3xl mx-auto relative">
+          {/* Desktop: Grid of 3, Mobile: Carousel */}
+          <div className="hidden md:grid grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+            {TESTIMONIALS.map((testimonial, i) => (
+              <AnimatedSection key={testimonial.name} delay={i * 0.1}>
+                <div className="bg-brand-navy-light border border-white/10 rounded-2xl p-6 h-full flex flex-col hover:border-brand-orange/30 transition-colors">
+                  <div className="flex gap-1 mb-3">
+                    {Array.from({ length: testimonial.rating }).map((_, j) => (
+                      <Star key={j} className="h-4 w-4 fill-brand-orange text-brand-orange" />
+                    ))}
+                  </div>
+                  <p className="text-gray-200 leading-relaxed mb-4 flex-1 text-sm">
+                    &ldquo;{testimonial.text}&rdquo;
+                  </p>
+                  <div className="pt-4 border-t border-white/10">
+                    <p className="font-semibold text-white text-sm">{testimonial.name}</p>
+                    <p className="text-xs text-gray-400">{testimonial.location}</p>
+                  </div>
+                </div>
+              </AnimatedSection>
+            ))}
+          </div>
+
+          {/* Mobile: Carousel */}
+          <div className="md:hidden max-w-lg mx-auto relative">
             <motion.div
               key={testimonialIndex}
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.3 }}
-              className="bg-brand-navy-light border border-white/10 rounded-2xl p-8 md:p-10"
+              className="bg-brand-navy-light border border-white/10 rounded-2xl p-8"
             >
               <div className="flex gap-1 mb-4">
                 {Array.from({ length: TESTIMONIALS[testimonialIndex].rating }).map((_, i) => (
@@ -372,8 +488,8 @@ export default function Home() {
           />
 
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-3xl mx-auto mb-10">
-            {SERVICE_AREAS.map((area) => (
-              <motion.div key={area.slug} {...fadeInUp}>
+            {SERVICE_AREAS.map((area, i) => (
+              <AnimatedSection key={area.slug} delay={i * 0.05}>
                 <Link
                   href={`/areas/${area.slug}`}
                   className="flex items-center gap-2 p-4 bg-gray-50 rounded-lg hover:bg-brand-orange hover:text-white transition-colors group shadow-sm"
@@ -383,14 +499,14 @@ export default function Home() {
                     {area.city}, {area.state}
                   </span>
                 </Link>
-              </motion.div>
+              </AnimatedSection>
             ))}
           </div>
 
-          <motion.div {...fadeInUp} className="max-w-md mx-auto text-center">
+          <AnimatedSection className="max-w-md mx-auto text-center">
             <p className="text-sm text-muted-foreground mb-4">Not sure if we serve your area?</p>
             <ServiceAreaChecker />
-          </motion.div>
+          </AnimatedSection>
         </div>
       </section>
 
@@ -406,7 +522,7 @@ export default function Home() {
           />
         </div>
         <div className="relative container mx-auto px-4 text-center">
-          <motion.div {...fadeInUp}>
+          <AnimatedSection>
             <h2 className="font-[family-name:var(--font-heading)] text-3xl md:text-4xl text-white mb-4 uppercase">
               Ready to Start Your Project?
             </h2>
@@ -418,7 +534,7 @@ export default function Home() {
               <Button
                 asChild
                 size="lg"
-                className="bg-brand-purple hover:bg-brand-purple-light text-white text-lg px-8 py-6 font-bold"
+                className="bg-brand-purple hover:bg-brand-purple-light text-white text-lg px-8 py-6 font-bold shadow-lg"
               >
                 <a href={COMPANY.phoneHref}>
                   <Phone className="h-5 w-5 mr-2" />
@@ -437,7 +553,7 @@ export default function Home() {
                 </Link>
               </Button>
             </div>
-          </motion.div>
+          </AnimatedSection>
         </div>
       </section>
     </>

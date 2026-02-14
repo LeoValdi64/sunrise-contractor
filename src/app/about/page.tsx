@@ -2,19 +2,29 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { Phone, ArrowRight, CheckCircle, Truck, Shield, Users, Award } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { SectionHeading } from "@/components/section-heading";
 import { COMPANY, SERVICE_AREAS } from "@/lib/constants";
+import { useRef } from "react";
 
-const fadeInUp = {
-  initial: { opacity: 0, y: 30 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, margin: "-50px" },
-  transition: { duration: 0.5 },
-};
+function AnimatedSection({ children, className, delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-60px" });
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 30 }}
+      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+      transition={{ duration: 0.5, delay }}
+      className={className}
+    >
+      {children}
+    </motion.div>
+  );
+}
 
 export default function AboutPage() {
   return (
@@ -29,14 +39,16 @@ export default function AboutPage() {
           priority
           sizes="100vw"
         />
-        <div className="absolute inset-0 bg-black/70" />
+        <div className="absolute inset-0 bg-gradient-to-r from-brand-navy/90 via-brand-navy/70 to-brand-navy/50" />
         <div className="relative container mx-auto px-4 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">About Us</h1>
+            <h1 className="font-[family-name:var(--font-heading)] text-4xl md:text-5xl lg:text-6xl text-white mb-4 uppercase">
+              About Us
+            </h1>
             <p className="text-lg text-gray-300 max-w-2xl mx-auto">
               Locally owned and operated in Marysville, WA — proudly serving North Snohomish County for over 12 years.
             </p>
@@ -45,10 +57,10 @@ export default function AboutPage() {
       </section>
 
       {/* Story */}
-      <section className="py-20 bg-brand-cream">
+      <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <motion.div {...fadeInUp}>
+            <AnimatedSection>
               <SectionHeading
                 label="Our Story"
                 title="Built on Hard Work & Quality"
@@ -68,8 +80,8 @@ export default function AboutPage() {
                   We&apos;re one of the only contractors in the area offering <strong>pool and spa restoration services</strong>, giving homeowners a trusted local option for bringing their pools back to life.
                 </p>
               </div>
-            </motion.div>
-            <motion.div {...fadeInUp} className="grid grid-cols-2 gap-4">
+            </AnimatedSection>
+            <AnimatedSection delay={0.2} className="grid grid-cols-2 gap-4">
               <Image
                 src="/images/Sunrise-2BLandscape-2Btrucks-1920w.jpg"
                 alt="Sunrise Landscape fleet"
@@ -102,7 +114,7 @@ export default function AboutPage() {
                 className="rounded-xl shadow-lg object-cover w-full h-48 mt-8"
                 sizes="25vw"
               />
-            </motion.div>
+            </AnimatedSection>
           </div>
         </div>
       </section>
@@ -136,25 +148,25 @@ export default function AboutPage() {
                 title: "Reliability",
                 description: "Our own fleet of equipment means we show up on time, every time — no waiting on subcontractors.",
               },
-            ].map((value) => (
-              <motion.div key={value.title} {...fadeInUp}>
-                <Card className="h-full text-center bg-brand-cream border-none">
+            ].map((value, i) => (
+              <AnimatedSection key={value.title} delay={i * 0.1}>
+                <Card className="h-full text-center bg-gray-50 border-none">
                   <CardContent className="p-6">
-                    <div className="inline-flex p-3 bg-brand-green/10 rounded-xl mb-4">
-                      <value.icon className="h-8 w-8 text-brand-green" />
+                    <div className="inline-flex p-3 bg-brand-orange/10 rounded-xl mb-4">
+                      <value.icon className="h-8 w-8 text-brand-orange" />
                     </div>
                     <h3 className="font-bold text-lg text-brand-dark mb-2">{value.title}</h3>
                     <p className="text-sm text-muted-foreground">{value.description}</p>
                   </CardContent>
                 </Card>
-              </motion.div>
+              </AnimatedSection>
             ))}
           </div>
         </div>
       </section>
 
       {/* Equipment */}
-      <section className="py-20 bg-brand-dark">
+      <section className="py-20 bg-brand-navy">
         <div className="container mx-auto px-4">
           <SectionHeading
             label="Our Fleet"
@@ -179,28 +191,30 @@ export default function AboutPage() {
                 alt: "Equipment fleet",
                 label: "Full Fleet",
               },
-            ].map((item) => (
-              <motion.div key={item.label} {...fadeInUp} className="relative group overflow-hidden rounded-xl">
-                <Image
-                  src={item.src}
-                  alt={item.alt}
-                  width={600}
-                  height={400}
-                  className="object-cover w-full h-64 group-hover:scale-105 transition-transform duration-500"
-                  sizes="(max-width: 768px) 100vw, 33vw"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                <span className="absolute bottom-4 left-4 text-white font-bold text-lg">
-                  {item.label}
-                </span>
-              </motion.div>
+            ].map((item, i) => (
+              <AnimatedSection key={item.label} delay={i * 0.1}>
+                <div className="relative group overflow-hidden rounded-xl">
+                  <Image
+                    src={item.src}
+                    alt={item.alt}
+                    width={600}
+                    height={400}
+                    className="object-cover w-full h-64 group-hover:scale-105 transition-transform duration-500"
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                  <span className="absolute bottom-4 left-4 text-white font-bold text-lg">
+                    {item.label}
+                  </span>
+                </div>
+              </AnimatedSection>
             ))}
           </div>
         </div>
       </section>
 
       {/* What Sets Us Apart */}
-      <section className="py-20 bg-brand-cream">
+      <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-4 max-w-4xl">
           <SectionHeading
             label="The Sunrise Difference"
@@ -216,11 +230,13 @@ export default function AboutPage() {
               "Serving 8+ cities across North Snohomish County and beyond",
               "Hundreds of completed projects and satisfied homeowners",
               "Free, detailed estimates with no pressure",
-            ].map((item) => (
-              <motion.div key={item} {...fadeInUp} className="flex items-start gap-3 bg-white p-4 rounded-lg">
-                <CheckCircle className="h-5 w-5 text-brand-green mt-0.5 shrink-0" />
-                <span className="text-brand-dark">{item}</span>
-              </motion.div>
+            ].map((item, i) => (
+              <AnimatedSection key={item} delay={i * 0.03}>
+                <div className="flex items-start gap-3 bg-white p-4 rounded-lg shadow-sm">
+                  <CheckCircle className="h-5 w-5 text-brand-orange mt-0.5 shrink-0" />
+                  <span className="text-brand-dark">{item}</span>
+                </div>
+              </AnimatedSection>
             ))}
           </div>
         </div>
@@ -238,7 +254,7 @@ export default function AboutPage() {
               <Link
                 key={area.slug}
                 href={`/areas/${area.slug}`}
-                className="px-4 py-2 bg-brand-cream rounded-full text-sm font-medium hover:bg-brand-green hover:text-white transition-colors"
+                className="px-4 py-2 bg-gray-50 rounded-full text-sm font-medium hover:bg-brand-orange hover:text-white transition-colors"
               >
                 {area.city}, {area.state}
               </Link>
@@ -248,26 +264,30 @@ export default function AboutPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-16 bg-brand-green">
+      <section className="py-16 bg-brand-orange">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold text-white mb-4">Ready to Work With Us?</h2>
-          <p className="text-white/80 mb-8 max-w-xl mx-auto">
-            Get in touch today for a free estimate. We&apos;d love to discuss your project.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button asChild size="lg" className="bg-brand-brown hover:bg-brand-brown-light text-white">
-              <a href={COMPANY.phoneHref}>
-                <Phone className="h-5 w-5 mr-2" />
-                {COMPANY.phone}
-              </a>
-            </Button>
-            <Button asChild size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
-              <Link href="/contact">
-                Contact Us
-                <ArrowRight className="h-5 w-5 ml-2" />
-              </Link>
-            </Button>
-          </div>
+          <AnimatedSection>
+            <h2 className="font-[family-name:var(--font-heading)] text-3xl md:text-4xl text-white mb-4 uppercase">
+              Ready to Work With Us?
+            </h2>
+            <p className="text-white/90 mb-8 max-w-xl mx-auto">
+              Get in touch today for a free estimate. We&apos;d love to discuss your project.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button asChild size="lg" className="bg-brand-purple hover:bg-brand-purple-light text-white font-bold">
+                <a href={COMPANY.phoneHref}>
+                  <Phone className="h-5 w-5 mr-2" />
+                  {COMPANY.phone}
+                </a>
+              </Button>
+              <Button asChild size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-brand-orange font-bold">
+                <Link href="/contact-us">
+                  Contact Us
+                  <ArrowRight className="h-5 w-5 ml-2" />
+                </Link>
+              </Button>
+            </div>
+          </AnimatedSection>
         </div>
       </section>
     </>

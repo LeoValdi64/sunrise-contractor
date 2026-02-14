@@ -65,12 +65,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="overflow-x-hidden">
       <head>
         <LocalBusinessJsonLd />
       </head>
       <body
-        className={`${anton.variable} ${openSans.variable} font-[family-name:var(--font-body)] antialiased`}
+        className={`${anton.variable} ${openSans.variable} font-[family-name:var(--font-body)] antialiased overflow-x-hidden`}
       >
         <Navbar />
         <main>{children}</main>
