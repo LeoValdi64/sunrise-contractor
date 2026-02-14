@@ -16,11 +16,22 @@ export function Navbar() {
   const [landscapeOpen, setLandscapeOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [hidden, setHidden] = useState(false);
+  const [navTop, setNavTop] = useState(0);
   const lastScrollY = useRef(0);
+  const orangeBarRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
+      const barHeight = orangeBarRef.current?.offsetHeight ?? 40;
+
+      // Position nav below orange bar when near top
+      if (currentScrollY < barHeight) {
+        setNavTop(barHeight - currentScrollY);
+      } else {
+        setNavTop(0);
+      }
+
       if (currentScrollY > lastScrollY.current && currentScrollY > 80) {
         setHidden(true);
       } else if (currentScrollY < lastScrollY.current) {
@@ -29,6 +40,10 @@ export function Navbar() {
       lastScrollY.current = currentScrollY;
     };
 
+    // Set initial offset
+    const barHeight = orangeBarRef.current?.offsetHeight ?? 40;
+    setNavTop(barHeight);
+
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -36,7 +51,7 @@ export function Navbar() {
   return (
     <>
       {/* Orange top bar - static, scrolls away naturally */}
-      <div className="bg-brand-orange text-white text-sm py-2.5">
+      <div ref={orangeBarRef} className="bg-brand-orange text-white text-sm py-2.5">
         <div className="container mx-auto px-4 flex justify-between items-center">
           <span className="hidden md:block font-medium">
             Serving Marysville and surrounding areas
@@ -55,8 +70,9 @@ export function Navbar() {
 
       {/* Main navigation bar - fixed, hides on scroll down / shows on scroll up */}
       <header
+        style={{ top: `${navTop}px` }}
         className={cn(
-          "fixed top-0 left-0 w-full z-50 bg-white shadow-md transition-transform duration-300",
+          "fixed left-0 w-full z-50 bg-white shadow-md transition-all duration-300",
           hidden && "-translate-y-full"
         )}
       >
