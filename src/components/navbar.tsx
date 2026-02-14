@@ -72,7 +72,7 @@ export function Navbar() {
       <header
         style={{ top: `${navTop}px` }}
         className={cn(
-          "fixed left-0 w-full z-50 bg-white shadow-md transition-all duration-300",
+          "fixed left-0 w-full z-50 bg-white shadow-md transition-all duration-100",
           hidden && "-translate-y-full"
         )}
       >
