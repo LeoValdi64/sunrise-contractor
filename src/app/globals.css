@@ -7,8 +7,8 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-body);
+  --font-heading: var(--font-heading);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -46,85 +46,52 @@
   --radius-3xl: calc(var(--radius) + 12px);
   --radius-4xl: calc(var(--radius) + 16px);
 
-  /* Custom brand colors */
-  --color-brand-green: #1B4332;
-  --color-brand-green-light: #2D6A4F;
-  --color-brand-green-dark: #143326;
-  --color-brand-brown: #8B6914;
-  --color-brand-brown-light: #A67C1A;
-  --color-brand-cream: #F5F1EB;
-  --color-brand-cream-dark: #E8E0D4;
+  /* Sunrise brand colors */
+  --color-brand-orange: #F57400;
+  --color-brand-orange-light: #FF8A1F;
+  --color-brand-navy: #1D2138;
+  --color-brand-navy-light: #2A2E4A;
+  --color-brand-purple: #9C27B0;
+  --color-brand-purple-light: #AB47BC;
+  --color-brand-purple-dark: #7B1FA2;
+  --color-brand-teal: #68CCD1;
+  --color-brand-teal-light: #80D8DC;
   --color-brand-dark: #1A1A1A;
-  --color-brand-dark-light: #2A2A2A;
 }
 
 :root {
   --radius: 0.625rem;
-  --background: #F5F1EB;
+  --background: #FFFFFF;
   --foreground: #1A1A1A;
   --card: #FFFFFF;
   --card-foreground: #1A1A1A;
   --popover: #FFFFFF;
   --popover-foreground: #1A1A1A;
-  --primary: #1B4332;
-  --primary-foreground: #F5F1EB;
-  --secondary: #E8E0D4;
+  --primary: #1D2138;
+  --primary-foreground: #FFFFFF;
+  --secondary: #F5F5F5;
   --secondary-foreground: #1A1A1A;
-  --muted: #E8E0D4;
+  --muted: #F5F5F5;
   --muted-foreground: #6B6B6B;
-  --accent: #8B6914;
+  --accent: #F57400;
   --accent-foreground: #FFFFFF;
   --destructive: oklch(0.577 0.245 27.325);
-  --border: #D4CCC0;
-  --input: #D4CCC0;
-  --ring: #1B4332;
-  --chart-1: #1B4332;
-  --chart-2: #8B6914;
-  --chart-3: #2D6A4F;
-  --chart-4: #A67C1A;
-  --chart-5: #143326;
-  --sidebar: #F5F1EB;
+  --border: #E5E5E5;
+  --input: #E5E5E5;
+  --ring: #9C27B0;
+  --chart-1: #F57400;
+  --chart-2: #9C27B0;
+  --chart-3: #1D2138;
+  --chart-4: #68CCD1;
+  --chart-5: #FF8A1F;
+  --sidebar: #FFFFFF;
   --sidebar-foreground: #1A1A1A;
-  --sidebar-primary: #1B4332;
-  --sidebar-primary-foreground: #F5F1EB;
-  --sidebar-accent: #E8E0D4;
+  --sidebar-primary: #1D2138;
+  --sidebar-primary-foreground: #FFFFFF;
+  --sidebar-accent: #F5F5F5;
   --sidebar-accent-foreground: #1A1A1A;
-  --sidebar-border: #D4CCC0;
-  --sidebar-ring: #1B4332;
-}
-
-.dark {
-  --background: #1A1A1A;
-  --foreground: #F5F1EB;
-  --card: #2A2A2A;
-  --card-foreground: #F5F1EB;
-  --popover: #2A2A2A;
-  --popover-foreground: #F5F1EB;
-  --primary: #2D6A4F;
-  --primary-foreground: #F5F1EB;
-  --secondary: #333333;
-  --secondary-foreground: #F5F1EB;
-  --muted: #333333;
-  --muted-foreground: #A0A0A0;
-  --accent: #A67C1A;
-  --accent-foreground: #FFFFFF;
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: rgba(255, 255, 255, 0.1);
-  --input: rgba(255, 255, 255, 0.15);
-  --ring: #2D6A4F;
-  --chart-1: #2D6A4F;
-  --chart-2: #A67C1A;
-  --chart-3: #1B4332;
-  --chart-4: #8B6914;
-  --chart-5: #143326;
-  --sidebar: #2A2A2A;
-  --sidebar-foreground: #F5F1EB;
-  --sidebar-primary: #2D6A4F;
-  --sidebar-primary-foreground: #F5F1EB;
-  --sidebar-accent: #333333;
-  --sidebar-accent-foreground: #F5F1EB;
-  --sidebar-border: rgba(255, 255, 255, 0.1);
-  --sidebar-ring: #2D6A4F;
+  --sidebar-border: #E5E5E5;
+  --sidebar-ring: #9C27B0;
 }
 
 @layer base {
@@ -138,4 +105,28 @@
 
 html {
   scroll-behavior: smooth;
+}
+
+/* Wave separator SVG shape */
+.wave-separator {
+  position: relative;
+}
+.wave-separator::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 80' preserveAspectRatio='none'%3E%3Cpath fill='%23FFFFFF' d='M0,40 C360,80 720,0 1440,40 L1440,80 L0,80 Z'/%3E%3C/svg%3E") no-repeat bottom center;
+  background-size: 100% 100%;
+  pointer-events: none;
+}
+.wave-separator-navy::after {
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 80' preserveAspectRatio='none'%3E%3Cpath fill='%231D2138' d='M0,40 C360,80 720,0 1440,40 L1440,80 L0,80 Z'/%3E%3C/svg%3E") no-repeat bottom center;
+  background-size: 100% 100%;
+}
+.wave-separator-white::after {
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 80' preserveAspectRatio='none'%3E%3Cpath fill='%23FFFFFF' d='M0,40 C360,80 720,0 1440,40 L1440,80 L0,80 Z'/%3E%3C/svg%3E") no-repeat bottom center;
+  background-size: 100% 100%;
 }

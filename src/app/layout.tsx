@@ -1,18 +1,19 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Anton, Open_Sans } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
-import { MobileCTA } from "@/components/mobile-cta";
+import { FloatingButtons } from "@/components/floating-buttons";
 import { LocalBusinessJsonLd } from "@/components/json-ld";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const anton = Anton({
+  variable: "--font-heading",
   subsets: ["latin"],
+  weight: "400",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const openSans = Open_Sans({
+  variable: "--font-body",
   subsets: ["latin"],
 });
 
@@ -45,9 +46,9 @@ export const metadata: Metadata = {
       "Professional landscaping and general contracting services in North Snohomish County. 12+ years experience. Free estimates.",
     images: [
       {
-        url: "/images/landing_page_white_background-2304w.png",
-        width: 2304,
-        height: 1200,
+        url: "/images/%232_Sunrise-Landscape-General-Contrator-Inc.png",
+        width: 800,
+        height: 400,
         alt: "Sunrise Landscape General Contractor Inc",
       },
     ],
@@ -69,12 +70,12 @@ export default function RootLayout({
         <LocalBusinessJsonLd />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${anton.variable} ${openSans.variable} font-[family-name:var(--font-body)] antialiased`}
       >
         <Navbar />
         <main>{children}</main>
         <Footer />
-        <MobileCTA />
+        <FloatingButtons />
       </body>
     </html>
   );

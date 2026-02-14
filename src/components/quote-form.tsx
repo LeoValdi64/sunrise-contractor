@@ -24,21 +24,20 @@ export function QuoteForm({ className, preselectedService }: QuoteFormProps) {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // In production, this would send to an API endpoint
     setSubmitted(true);
   };
 
   if (submitted) {
     return (
       <div className={`text-center py-12 ${className}`}>
-        <CheckCircle className="h-16 w-16 text-brand-green mx-auto mb-4" />
+        <CheckCircle className="h-16 w-16 text-brand-orange mx-auto mb-4" />
         <h3 className="text-2xl font-bold mb-2">Thank You!</h3>
         <p className="text-muted-foreground mb-4">
           We&apos;ve received your request and will get back to you within 24 hours.
         </p>
         <p className="text-sm text-muted-foreground">
           Need immediate help? Call us at{" "}
-          <a href={COMPANY.phoneHref} className="text-brand-green font-semibold hover:underline">
+          <a href={COMPANY.phoneHref} className="text-brand-purple font-semibold hover:underline">
             {COMPANY.phone}
           </a>
         </p>
@@ -127,7 +126,7 @@ export function QuoteForm({ className, preselectedService }: QuoteFormProps) {
         />
       </div>
 
-      <Button type="submit" className="w-full bg-brand-green hover:bg-brand-green-light text-white text-base py-6">
+      <Button type="submit" className="w-full bg-brand-purple hover:bg-brand-purple-light text-white text-base py-6 font-bold">
         <Send className="h-4 w-4 mr-2" />
         Request Free Estimate
       </Button>

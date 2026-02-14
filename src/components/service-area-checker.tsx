@@ -26,13 +26,13 @@ export function ServiceAreaChecker() {
           maxLength={5}
           className="bg-white"
         />
-        <Button type="submit" className="bg-brand-green hover:bg-brand-green-light text-white shrink-0">
+        <Button type="submit" className="bg-brand-purple hover:bg-brand-purple-light text-white shrink-0">
           <MapPin className="h-4 w-4 mr-1.5" />
           Check
         </Button>
       </form>
       {result && (
-        <div className={`mt-3 flex items-center gap-2 text-sm ${result.found ? "text-brand-green" : "text-red-600"}`}>
+        <div className={`mt-3 flex items-center gap-2 text-sm ${result.found ? "text-brand-orange" : "text-red-600"}`}>
           {result.found ? (
             <>
               <CheckCircle className="h-4 w-4" />

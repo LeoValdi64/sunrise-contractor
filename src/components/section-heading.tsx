@@ -20,11 +20,11 @@ export function SectionHeading({ label, title, description, centered = true, lig
       className={`mb-12 ${centered ? "text-center" : ""}`}
     >
       {label && (
-        <span className="inline-block text-brand-brown font-semibold text-sm uppercase tracking-wider mb-2">
+        <span className="inline-block text-brand-orange font-semibold text-sm uppercase tracking-wider mb-2">
           {label}
         </span>
       )}
-      <h2 className={`text-3xl md:text-4xl font-bold ${light ? "text-white" : "text-brand-dark"}`}>
+      <h2 className={`font-[family-name:var(--font-heading)] text-3xl md:text-4xl uppercase tracking-wide ${light ? "text-white" : "text-brand-dark"}`}>
         {title}
       </h2>
       {description && (
