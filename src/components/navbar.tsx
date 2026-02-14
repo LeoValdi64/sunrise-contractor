@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
@@ -15,9 +15,31 @@ export function Navbar() {
   const pathname = usePathname();
   const [landscapeOpen, setLandscapeOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [hidden, setHidden] = useState(false);
+  const lastScrollY = useRef(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      if (currentScrollY > lastScrollY.current && currentScrollY > 80) {
+        setHidden(true);
+      } else if (currentScrollY < lastScrollY.current) {
+        setHidden(false);
+      }
+      lastScrollY.current = currentScrollY;
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <>
+    <div
+      className={cn(
+        "fixed top-0 left-0 w-full z-50 transition-transform duration-300",
+        hidden && "-translate-y-full"
+      )}
+    >
       {/* Orange top bar */}
       <div className="bg-brand-orange text-white text-sm py-2.5">
         <div className="container mx-auto px-4 flex justify-between items-center">
@@ -37,7 +59,7 @@ export function Navbar() {
       </div>
 
       {/* White navigation bar with centered logo */}
-      <header className="sticky top-0 z-50 bg-white shadow-md">
+      <header className="bg-white shadow-md">
         <div className="container mx-auto px-4">
           <nav className="flex items-center justify-between h-20 lg:h-24">
             {/* Left nav links (desktop) */}
@@ -201,6 +223,6 @@ export function Navbar() {
           </nav>
         </div>
       </header>
-    </>
+    </div>
   );
 }
