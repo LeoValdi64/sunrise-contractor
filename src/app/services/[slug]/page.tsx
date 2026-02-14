@@ -22,7 +22,13 @@ export async function generateMetadata({
     openGraph: {
       title: `${service.title} | Sunrise Landscape General Contractor`,
       description: service.shortDescription,
-      images: [{ url: service.heroImage }],
+      images: [{ url: "/og-banner.png", width: 1200, height: 630, alt: "Sunrise Landscape General Contractor Inc" }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${service.title} | Sunrise Landscape General Contractor`,
+      description: service.shortDescription,
+      images: ["/og-banner.png"],
     },
   };
 }

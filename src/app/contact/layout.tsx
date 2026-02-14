@@ -6,7 +6,13 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Contact Us | Sunrise Landscape General Contractor",
     description: "Get a free estimate for your landscaping or contracting project. Call (425) 903-7666 or request a quote online.",
-    images: [{ url: "/images/Excavation+project-1920w.jpg" }],
+    images: [{ url: "/og-banner.png", width: 1200, height: 630, alt: "Sunrise Landscape General Contractor Inc" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Contact Us | Sunrise Landscape General Contractor",
+    description: "Get a free estimate for your landscaping or contracting project. Call (425) 903-7666 or request a quote online.",
+    images: ["/og-banner.png"],
   },
 };
 

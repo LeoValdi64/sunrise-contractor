@@ -24,6 +24,13 @@ export async function generateMetadata({
     openGraph: {
       title: `Landscaping Services in ${area.city}, WA | Sunrise Landscape`,
       description: `Serving ${area.city} with professional landscaping and contracting services. Free estimates available.`,
+      images: [{ url: "/og-banner.png", width: 1200, height: 630, alt: "Sunrise Landscape General Contractor Inc" }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `Landscaping Services in ${area.city}, WA | Sunrise Landscape`,
+      description: `Serving ${area.city} with professional landscaping and contracting services. Free estimates available.`,
+      images: ["/og-banner.png"],
     },
   };
 }

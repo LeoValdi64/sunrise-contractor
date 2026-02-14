@@ -6,7 +6,13 @@ export const metadata: Metadata = {
   openGraph: {
     title: "About Us | Sunrise Landscape General Contractor",
     description: "Locally owned and operated in Marysville, WA. 12+ years of professional landscaping and general contracting in North Snohomish County.",
-    images: [{ url: "/images/Sunrise+Landscape+Contractor+trucks-1920w.jpg" }],
+    images: [{ url: "/og-banner.png", width: 1200, height: 630, alt: "Sunrise Landscape General Contractor Inc" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "About Us | Sunrise Landscape General Contractor",
+    description: "Locally owned and operated in Marysville, WA. 12+ years of professional landscaping and general contracting in North Snohomish County.",
+    images: ["/og-banner.png"],
   },
 };
 

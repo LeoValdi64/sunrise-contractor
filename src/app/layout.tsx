@@ -37,21 +37,36 @@ export const metadata: Metadata = {
     "pavers walkways",
     "landscape design",
   ],
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+    ],
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180" }],
+  },
   openGraph: {
     type: "website",
     locale: "en_US",
     siteName: "Sunrise Landscape General Contractor Inc",
-    title: "Sunrise Landscape General Contractor Inc | Marysville, WA",
+    title: "Sunrise Landscape General Contractor Inc",
     description:
-      "Professional landscaping and general contracting services in North Snohomish County. 12+ years experience. Free estimates.",
+      "Professional landscaping, hardscaping, and general contracting services in Marysville, WA and Snohomish County. 12+ years experience. Licensed & insured. Free estimates.",
     images: [
       {
-        url: "/images/%232_Sunrise-Landscape-General-Contrator-Inc.png",
-        width: 800,
-        height: 400,
+        url: "/og-banner.png",
+        width: 1200,
+        height: 630,
         alt: "Sunrise Landscape General Contractor Inc",
       },
     ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Sunrise Landscape General Contractor Inc",
+    description:
+      "Professional landscaping, hardscaping, and general contracting services in Marysville, WA and Snohomish County. Licensed & insured. Free estimates.",
+    images: ["/og-banner.png"],
   },
   robots: {
     index: true,
