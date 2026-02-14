@@ -42,7 +42,7 @@ export function FloatingButtons() {
       {/* Purple "Call Us Today!" CTA button - bottom right */}
       <a
         href={COMPANY.phoneHref}
-        className="fixed bottom-6 right-6 z-50 flex items-center gap-2 bg-brand-purple hover:bg-brand-purple-light text-white px-5 py-3.5 rounded-full shadow-2xl transition-colors font-bold text-sm"
+        className="fixed bottom-4 right-4 md:bottom-6 md:right-6 z-50 flex items-center gap-2 bg-brand-purple hover:bg-brand-purple-light text-white px-4 py-3 md:px-5 md:py-3.5 rounded-full shadow-2xl transition-colors font-bold text-sm"
         aria-label="Call us today"
       >
         <Phone className="h-5 w-5 animate-pulse" />

@@ -105,7 +105,7 @@ export default function Home() {
   return (
     <>
       {/* HERO SECTION */}
-      <section className="relative min-h-[80vh] flex flex-col items-center justify-center wave-separator overflow-hidden">
+      <section className="relative min-h-[60vh] md:min-h-[80vh] flex flex-col items-center justify-center wave-separator overflow-hidden">
         <Image
           src="/hero-original.jpg"
           alt="Beautiful outdoor living space with pergola and manicured lawn by Sunrise Landscape"
@@ -116,32 +116,17 @@ export default function Home() {
         />
         <div className="absolute inset-0 bg-black/50" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/40" />
-        <div className="relative flex flex-col items-center text-center px-4 py-20 max-w-4xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="mb-8"
-          >
-            <Image
-              src={COMPANY.logo}
-              alt={COMPANY.name}
-              width={320}
-              height={120}
-              className="mx-auto brightness-0 invert drop-shadow-lg"
-              priority
-            />
-          </motion.div>
+        <div className="relative flex flex-col items-center text-center px-4 py-10 md:py-20 max-w-4xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.2 }}
           >
-            <h1 className="font-[family-name:var(--font-heading)] text-4xl md:text-5xl lg:text-6xl text-white leading-[1.1] mb-6 uppercase drop-shadow-lg">
+            <h1 className="font-[family-name:var(--font-heading)] text-4xl md:text-5xl lg:text-6xl text-white leading-[1.1] mb-4 md:mb-6 uppercase drop-shadow-lg">
               Transform Your
               <span className="block text-brand-orange drop-shadow-lg">Outdoor Space</span>
             </h1>
-            <p className="text-lg md:text-xl text-gray-100 mb-10 leading-relaxed max-w-2xl mx-auto drop-shadow-md">
+            <p className="text-base md:text-xl text-gray-100 mb-6 md:mb-10 leading-relaxed max-w-2xl mx-auto drop-shadow-md">
               Professional landscaping, hardscaping, concrete work, and excavation
               services. From retaining walls to pool restoration — we bring your
               vision to life.
@@ -151,7 +136,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.5 }}
-            className="flex flex-col sm:flex-row gap-4"
+            className="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full sm:w-auto pb-4 md:pb-0"
           >
             <Button
               asChild
