@@ -106,14 +106,16 @@ export default function Home() {
     <>
       {/* HERO SECTION */}
       <section className="relative h-[95vh] flex flex-col items-center justify-center wave-separator overflow-hidden px-4 py-16 md:py-20 -mt-[120px] lg:-mt-[136px] pt-[120px] lg:pt-[136px]">
-        <Image
-          src="/hero-original.jpg"
-          alt="Beautiful outdoor living space with pergola and manicured lawn by Sunrise Landscape"
-          fill
-          className="object-cover object-center"
-          priority
-          sizes="100vw"
-        />
+        <div className="fixed inset-0 -z-10 h-[95vh]">
+          <Image
+            src="/hero-original.jpg"
+            alt="Beautiful outdoor living space with pergola and manicured lawn by Sunrise Landscape"
+            fill
+            className="object-cover object-center"
+            priority
+            sizes="100vw"
+          />
+        </div>
         <div className="absolute inset-0 bg-black/50" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/40" />
         <div className="relative flex flex-col items-center justify-center text-center max-w-4xl mx-auto w-full">
