@@ -5,6 +5,7 @@ import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { FloatingButtons } from "@/components/floating-buttons";
 import { LocalBusinessJsonLd } from "@/components/json-ld";
+import { Analytics } from "@vercel/analytics/react";
 
 const anton = Anton({
   variable: "--font-heading",
@@ -87,6 +88,7 @@ export default function RootLayout({
         <main className="pt-[120px] lg:pt-[136px]">{children}</main>
         <Footer />
         <FloatingButtons />
+        <Analytics />
       </body>
     </html>
   );
