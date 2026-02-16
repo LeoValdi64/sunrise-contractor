@@ -132,7 +132,7 @@ export function ServicePageClient({ slug }: { slug: string }) {
                         {COMPANY.phone}
                       </a>
                     </Button>
-                    <Button asChild variant="outline" className="border-white text-white hover:bg-white/10">
+                    <Button asChild className="border-2 border-white text-white bg-transparent hover:bg-white/10">
                       <Link href="/contact">Request a Quote</Link>
                     </Button>
                   </div>
@@ -325,7 +325,7 @@ export function ServicePageClient({ slug }: { slug: string }) {
                   {COMPANY.phone}
                 </a>
               </Button>
-              <Button asChild size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-brand-orange font-bold">
+              <Button asChild size="lg" className="border-2 border-white text-white bg-transparent hover:bg-white hover:text-brand-orange font-bold">
                 <Link href="/contact">
                   Request a Quote Online
                   <ArrowRight className="h-4 w-4 ml-2" />

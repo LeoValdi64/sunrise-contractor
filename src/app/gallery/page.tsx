@@ -194,7 +194,7 @@ export default function GalleryPage() {
                   {COMPANY.phone}
                 </a>
               </Button>
-              <Button asChild size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
+              <Button asChild size="lg" className="border-2 border-white text-white bg-transparent hover:bg-white/10">
                 <Link href="/contact">
                   Request a Quote
                   <ArrowRight className="h-4 w-4 ml-2" />

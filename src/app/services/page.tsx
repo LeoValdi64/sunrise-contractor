@@ -127,7 +127,7 @@ export default function ServicesPage() {
                   {COMPANY.phone}
                 </a>
               </Button>
-              <Button asChild size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-brand-orange font-bold">
+              <Button asChild size="lg" className="border-2 border-white text-white bg-transparent hover:bg-white hover:text-brand-orange font-bold">
                 <Link href="/contact">Request a Quote</Link>
               </Button>
             </div>

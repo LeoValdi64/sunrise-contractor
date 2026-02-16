@@ -533,8 +533,7 @@ export default function Home() {
               <Button
                 asChild
                 size="lg"
-                variant="outline"
-                className="border-white text-white hover:bg-white hover:text-brand-orange text-lg px-8 py-6 font-bold"
+                className="border-2 border-white text-white bg-transparent hover:bg-white hover:text-brand-orange text-lg px-8 py-6 font-bold"
               >
                 <Link href="/contact">
                   Request a Quote Online
