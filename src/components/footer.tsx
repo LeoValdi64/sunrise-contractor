@@ -15,7 +15,7 @@ export function Footer() {
               alt={COMPANY.name}
               width={200}
               height={60}
-              className="h-14 w-auto brightness-200"
+              className="h-14 w-auto bg-white rounded-lg px-3 py-1"
             />
             <p className="text-sm leading-relaxed text-gray-400">
               Professional landscaping and general contracting services serving Marysville and surrounding areas. Licensed, insured, and committed to quality.
