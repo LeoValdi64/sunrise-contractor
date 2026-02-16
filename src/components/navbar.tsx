@@ -15,7 +15,7 @@ export function Navbar() {
   const pathname = usePathname();
   const [landscapeOpen, setLandscapeOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [hidden, setHidden] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const [navTop, setNavTop] = useState(0);
   const lastScrollY = useRef(0);
   const orangeBarRef = useRef<HTMLDivElement>(null);
@@ -32,11 +32,9 @@ export function Navbar() {
         setNavTop(0);
       }
 
-      if (currentScrollY > lastScrollY.current && currentScrollY > 80) {
-        setHidden(true);
-      } else if (currentScrollY < lastScrollY.current) {
-        setHidden(false);
-      }
+      // Compact mode when scrolled past 80px
+      setScrolled(currentScrollY > 80);
+
       lastScrollY.current = currentScrollY;
     };
 
@@ -72,12 +70,14 @@ export function Navbar() {
       <header
         style={{ top: `${navTop}px` }}
         className={cn(
-          "fixed left-0 w-full z-50 bg-white shadow-md transition-all duration-100",
-          hidden && "-translate-y-full"
+          "fixed left-0 w-full z-50 bg-white shadow-md transition-all duration-200",
         )}
       >
         <div className="container mx-auto px-4">
-          <nav className="flex items-center justify-between h-20 lg:h-24">
+          <nav className={cn(
+            "flex items-center justify-between transition-all duration-200",
+            scrolled ? "h-14 lg:h-16" : "h-20 lg:h-24"
+          )}>
             {/* Left nav links (desktop) */}
             <div className="hidden lg:flex items-center gap-1 flex-1">
               {NAV_LINKS_LEFT.map((link) =>
@@ -147,7 +147,7 @@ export function Navbar() {
                 alt={COMPANY.name}
                 width={220}
                 height={80}
-                className="h-16 lg:h-20 w-auto"
+                className={cn("w-auto transition-all duration-200", scrolled ? "h-10 lg:h-12" : "h-16 lg:h-20")}
                 priority
               />
             </Link>
