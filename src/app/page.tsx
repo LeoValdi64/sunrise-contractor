@@ -105,7 +105,7 @@ export default function Home() {
   return (
     <>
       {/* HERO SECTION */}
-      <section className="relative min-h-[75vh] md:min-h-[80vh] flex flex-col items-center justify-center wave-separator overflow-hidden px-4 py-16 md:py-20">
+      <section className="relative h-[95vh] flex flex-col items-center justify-center wave-separator overflow-hidden px-4 py-16 md:py-20 -mt-[120px] lg:-mt-[136px] pt-[120px] lg:pt-[136px]">
         <Image
           src="/hero-original.jpg"
           alt="Beautiful outdoor living space with pergola and manicured lawn by Sunrise Landscape"
