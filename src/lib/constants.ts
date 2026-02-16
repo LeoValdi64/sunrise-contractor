@@ -411,8 +411,13 @@ export const NAV_LINKS = [
 export const LANDSCAPE_DROPDOWN = [
   { href: "/services/landscaping", label: "Landscaping" },
   { href: "/services/hardscaping", label: "Hardscaping" },
+  { href: "/services/concrete", label: "Concrete Work" },
+  { href: "/services/retaining-walls", label: "Retaining Walls" },
+  { href: "/services/pavers", label: "Pavers & Walkways" },
   { href: "/services/drainage", label: "Drainage Systems" },
   { href: "/services/pool-restoration", label: "Pool Restoration" },
+  { href: "/services/excavation", label: "Excavation" },
+  { href: "/services/material-delivery", label: "Material Delivery" },
 ];
 
 export const SERVICE_AREA_ZIPS: Record<string, string> = {
